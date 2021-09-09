@@ -6,55 +6,46 @@ import ReactDom from "react-dom";
 import "./index.css";
 
 // setup vars
-const firstBook = {
-  img: "https://images-na.ssl-images-amazon.com/images/I/81iAADNy2NL._AC_UL200_SR200,200_.jpg",
-  author: "James Clear",
-  title: "Atomic Habbits",
-};
+const books = [
+  {
+    id: 1,
+    img: "https://images-na.ssl-images-amazon.com/images/I/81nzxODnaJL._AC_UL200_SR200,200_.jpg",
+    author: "Ann Whitford Paul",
+    title: "If Animals Kissed Good Night",
+  },
+  {
+    id: 2,
+    img: "https://images-na.ssl-images-amazon.com/images/I/81iAADNy2NL._AC_UL200_SR200,200_.jpg",
+    author: "James Clear",
+    title: "Atomic Habbits",
+  },
+  {
+    id: 3,
+    img: "https://images-na.ssl-images-amazon.com/images/I/51kcX5PpaZL._AC_UL200_SR200,200_.jpg",
+    author: "Paulo Coelho",
+    title: "The Alchemist",
+  },
+];
 
-const secondBook = {
-  img: "https://images-na.ssl-images-amazon.com/images/I/51kcX5PpaZL._AC_UL200_SR200,200_.jpg",
-  author: "Paulo Coelho",
-  title: "The Alchemist",
-};
+function BookList() {
+  return (
+    <section className="booklist">
+      {books.map((book) => {
+        return <Book key={book.id} book={book}></Book>;
+      })}
+    </section>
+  );
+}
 
 const Book = (props) => {
-  const { img, title, author, children } = props;
-  console.log(props);
+  const { img, title, author } = props.book;
   return (
     <article className="book">
       <img src={img} alt="" />
       <h1>{title}</h1>
       <h4>{author}</h4>
-      {children}
     </article>
   );
 };
-
-function BookList() {
-  return (
-    <section className="booklist">
-      <Book
-        img={firstBook.img}
-        title={firstBook.title}
-        author={firstBook.author}
-      >
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore error
-          adipisci sequi nesciunt expedita laborum repellat similique veniam
-          corrupti nemo!
-        </p>
-      </Book>
-      <Book
-        img={secondBook.img}
-        title={secondBook.title}
-        author={secondBook.author}
-      />
-      <Book />
-      <Book />
-      <Book />
-    </section>
-  );
-}
 
 ReactDom.render(<BookList />, document.getElementById("root"));
